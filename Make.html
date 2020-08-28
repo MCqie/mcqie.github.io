@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据生成器</title>
+</head>
+ 
+    <script type="text/javascript">
+ 
+        function huoqu(){
+ <!--    {"lng":123.414885,"lat":41.931849,"school":"沈阳航空航天大学","name":"李嘉誉","zhuanye":"自动化"}-->
+            var G="{\"lng\":"+document.getElementById('x').value+""+
+			",\"lat\":"+document.getElementById('y').value+""+
+			",\"school\":\""+document.getElementById('school').value+"\""+
+			",\"name\":\""+document.getElementById('name').value+"\""+
+			",\"zhuanye\":\""+document.getElementById('zy').value+"\""+
+			"},"
+			
+			;
+ document.getElementById("resu").value=G
+        }
+ 
+    </script>
+ 
+    <body>
+ 
+        <div class="containter">
+ 
+            <div class="row">
+ 
+                <div class="md-col-12">
+ 
+                <input type="text" id="x" placeholder="横坐标x"/>
+				<input type="text" id="y" placeholder="纵坐标y"/>
+				<input type="text" id="name" placeholder="名字"/>
+				<input type="text" id="school" placeholder="大学名称"/>
+				<input type="text" id="zy" placeholder="专业"/>
+ 
+                <input type="button" value="制作数据" onclick="huoqu()"/>
+ <input type="text" id="resu" placeholder="结果显示这里(不填)"/>
+                </div>
+ 
+            </div>
+ 
+        </div>
+ 
+    </body>
+ 
+ 
+</html>

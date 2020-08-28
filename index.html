@@ -1,28 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" charset="utf-8">
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <style type="text/css">
 body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+input{
+	width: 100px;
+	height: 20px;
+	border-width: 0;
+	padding: 0;
+}
+button{
+	width: 50px;
+	height: 10px;
+	padding: 0;
+}
+
 </style>
 <script type="text/javascript" 
 //ak填自己申请的ak
-src="http://api.map.baidu.com/api?v=2.0& ak=L4XGiaucgHrHs3SDeIuZszxZTjDU1g5B">
+src="https://api.map.baidu.com/api?v=3.0& ak=L4XGiaucgHrHs3SDeIuZszxZTjDU1g5B">
 </script>
-<title>他们在哪？</title>
+<title>地图</title>
 </head>
 <body>
 <div id="allmap"></div>
+<div id="r-result"></div>
 </body>
 </html>
 <script type="text/javascript">
 //这里填写同学信息 
 var points = [  
-{"lng":112.58,"lat":26.89,"school":"家里蹲1号","name":"李嘉誉"},  
-{"lng":112.59,"lat":26.90,"school":"家里蹲2号","name":"p2"}, 
- {"lng":123.414885,"lat":41.931849,"school":"沈阳航空航天大学","name":"X先生"},
-{"lng":112.57,"lat":26.88,"school":"家里蹲3号","name":"p3"}  
+	{"lng":121.563404,"lat":38.874229,"school":"大连海洋大学","name":"王婉冰","zhuanye":"建筑环境与能源应用工程"},
+	{"lng":121.775716,"lat":39.077085,"school":"大连理工大学城市学院","name":"小健","zhuanye":"电子信息工程"},
+	{"lng":124.36909,"lat":40.182842,"school":"辽东学院","name":"王嘉源","zhuanye":"动物医学"},
+	{"lng":121.079473,"lat":40.864839,"school":"辽宁理工职业大学","name":"王晴","zhuanye":"会计"},
+	{"lng":121.156819,"lat":41.149858,"school":"锦州医科大学","name":"李馨瑶","zhuanye":"动物医学"},
+	{"lng":104.24632,"lat":30.53621,"school":"成都航空职业技术学院","name":"宋云泽","zhuanye":"飞机机电维修"},
+	{"lng":124.370536,"lat":40.183356,"school":"辽东学院医学院","name":"张天宇","zhuanye":"临床医学"},
+	{"lng":123.798389,"lat":41.863371,"school":"辽宁石油化工大学","name":"李松霖","zhuanye":"❌不可识别"},
+	{"lng":123.574534,"lat":41.83367,"school":"沈阳农业大学","name":"刘桔","zhuanye":"工商管理类"},
+	{"lng":121.824379,"lat":39.10378,"school":"大连大学","name":"刘晶亮","zhuanye":"自动化"},
+	{"lng":121.53678,"lat":38.978889,"school":"大连工业大学","name":"张天娇","zhuanye":"生物工程"},
+	{"lng":121.130131,"lat":41.151678,"school":"辽宁工业大学","name":"王秋彤","zhuanye":"工程造价"},
+	{"lng":123.423981,"lat":41.911989,"school":"沈阳师范大学","name":"王莹","zhuanye":"计算机科学与技术"},
+	{"lng":121.833921,"lat":39.092314,"school":"大连财经学院","name":"万艺萌","zhuanye":"保险学"},
+	{"lng":123.491923,"lat":41.73315,"school":"沈阳理工大学","name":"高凡淇","zhuanye":"应用化学"},
+	{"lng":121.576904,"lat":38.916612,"school":"大连交通大学","name":"刘思琪","zhuanye":"日语与软件工程嫁接"},
+	{"lng":123.5058,"lat":41.877743,"school":"沈阳职业技术学院","name":"徐李","zhuanye":"机电一体化"},
+	{"lng":121.827568,"lat":39.106374,"school":"大连大学","name":"陆亚迪","zhuanye":"旅游管理"},
+	{"lng":123.251357,"lat":41.744324,"school":"沈阳工业大学","name":"李明慧","zhuanye":"机器人工程"},
+	{"lng":123.426315,"lat":41.683001,"school":"沈阳城市建设学院","name":"大建","zhuanye":"土木工程"},
+	{"lng":121.15089,"lat":41.154177,"school":"锦州医科大学","name":"叶枫佳楠","zhuanye":"康复治疗学"},
+	{"lng":123.500658,"lat":41.735654,"school":"沈阳理工大学","name":"陆莹","zhuanye":"光电信息科学与工程"},
+	{"lng":123.068706,"lat":41.109855,"school":"辽宁科技大学","name":"李闯","zhuanye":"机械电子工程"},
+	{"lng":121.536035,"lat":38.978802,"school":"大连工业大学","name":"王锐","zhuanye":"工商管理"},
+	{"lng":123.24205,"lat":41.751897,"school":"沈阳化工大学","name":"赵文轩","zhuanye":"化学工程与工艺"},
+	{"lng":123.491973,"lat":41.960082,"school":"中国医科大学","name":"王曼莉","zhuanye":"生物科学"},
+	{"lng":121.12126,"lat":41.095878,"school":"渤海大学","name":"赵姝婷","zhuanye":"数学与应用数学(师范)"},
+	{"lng":123.410815,"lat":41.930218,"school":"沈阳航空航天大学","name":"大智","zhuanye":"交通运输"},
+	{"lng":123.517381,"lat":41.746428,"school":"沈阳建筑大学","name":"李佳乐","zhuanye":"给排水科学与工程"},
+	{"lng":123.517093,"lat":41.750088,"school":"沈阳建筑大学","name":"王常宇","zhuanye":"机械设计制造及其自动化"},
+	{"lng":123.251011,"lat":41.745081,"school":"沈阳工业大学","name":"张峻玮","zhuanye":"软件工程"},
+	{"lng":123.414885,"lat":41.931849,"school":"沈阳航空航天大学","name":"李嘉誉","zhuanye":"自动化"},
+	{"lng":123.497276,"lat":41.73072,"school":"沈阳理工大学","name":"宋玉阳","zhuanye":"高分子材料与工程"}
 ]; 
 //添加到地图中
 function addMarker(points) {
@@ -46,20 +88,91 @@ function showInfo(thisMarker,point) {
     var sContent = 
     '<ul style="margin:0 0 5px 0;padding:0.2em 0">'  
     +'<li style="line-height: 26px;font-size: 15px;">'  
-    +'<span style="width: 50px;display: inline-block;">空:</span>' + "空" + '</li>'  
     +'<li style="line-height: 26px;font-size: 15px;">'  
     +'<span style="width: 50px;display: inline-block;">名称：</span>' + point.name + '</li>'  
-    +'<li style="line-height: 26px;font-size: 15px;"><span style="width: 50px;display: inline-block;">学校：</span>' + point.school + '</li> '  
+    +'<li style="line-height: 26px;font-size: 15px;"><span style="width: 50px;display: inline-block;">学校：</span>' + point.school + '</li> ' 
+	+'<span style="width: 50px;display: inline-block;">专业:</span>' + point.zhuanye + '</li>'  
     +'</ul>';
+	
     var infoWindow = new BMap.InfoWindow(sContent); //创建信息窗口对象
     thisMarker.openInfoWindow(infoWindow); //图片加载完后重绘infoWindow
 }
+
+
+
 //创建地图
 var map = new BMap.Map("allmap");    
-map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 设置中心点
-map.centerAndZoom( "衡阳");
-map.setCurrentCity("衡阳");          //设置为衡阳
+map.centerAndZoom(new BMap.Point(213, 41), 11);  // 设置中心点
+map.centerAndZoom( "沈阳");
+map.setCurrentCity("沈阳");          //设置为衡阳
 map.addControl(new BMap.MapTypeControl());   
 map.enableScrollWheelZoom(true);     
 addMarker(points);
+  map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
+  // 添加带有定位的导航控件
+  var navigationControl = new BMap.NavigationControl({
+    // 靠左上角位置
+    anchor: BMAP_ANCHOR_TOP_LEFT,
+    // LARGE类型
+    type: BMAP_NAVIGATION_CONTROL_LARGE,
+    // 启用显示定位
+    enableGeolocation: true
+  });
+  map.addControl(navigationControl);
+  // 添加定位控件
+  var geolocationControl = new BMap.GeolocationControl();
+  geolocationControl.addEventListener("locationSuccess", function(e){
+    // 定位成功事件
+    var address = '';
+    address += e.addressComponent.province;
+    address += e.addressComponent.city;
+    address += e.addressComponent.district;
+    address += e.addressComponent.street;
+    address += e.addressComponent.streetNumber;
+    // alert("当前定位地址为：" + address);
+  });
+  geolocationControl.addEventListener("locationError",function(e){
+    // 定位失败事件
+    alert(e.message);
+  });
+  map.addControl(geolocationControl);
+  function ZoomControl(){
+  	  // 默认停靠位置和偏移量
+  	  this.defaultAnchor = BMAP_NAVIGATION_CONTROL_LARGE;
+  	  this.defaultOffset = new BMap.Size(60, 10);
+  	}
+  ZoomControl.prototype = new BMap.Control();
+  
+  	// 自定义控件必须实现自己的initialize方法,并且将控件的DOM元素返回
+  	// 在本方法中创建个div元素作为控件的容器,并将其添加到地图容器中
+  	ZoomControl.prototype.initialize = function(map){
+  	  // 创建一个DOM元素
+  	  var div = document.createElement("div");
+  	  // 添加文字说明
+	  var input=document.createElement("input");
+	  input.style.weight="30px";
+  	  div.appendChild(input);
+	  var btn=document.createElement("button");
+	  btn.innerHTML="查询";
+	  btn.style.height="20px";
+	  btn.style.weight="100px";
+	  div.appendChild(btn);
+  	  // 设置样式
+  	  // 绑定事件,点击一次放大两级
+  	  btn.onclick = function(e){
+  			var local = new BMap.LocalSearch(map, {
+  				renderOptions:{map: map, panel: "r-result"}
+  			});
+  			local.search(input.value);
+  	  }
+  	  // 添加DOM元素到地图中
+  	  map.getContainer().appendChild(div);
+  	  // 将DOM元素返回
+  	  return div;
+  	}
+  	// 创建控件 
+  	var myZoomCtrl = new ZoomControl();
+  	// 添加到地图当中
+  	map.addControl(myZoomCtrl);
+
 </script>
